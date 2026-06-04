@@ -1,7 +1,7 @@
 ## EmbedLRC
 Script EmbedLRC ini digunakan untuk embed lirik (.lrc) ke berbagai format audio seperti .mp3, .m4a, .flac, .aac, .alac, .ogg, dan .wav. Script ini mendukung subfolder, log otomatis, dan opsi hapus .lrc setelah embed selesai.
 
-**this script was designed to embed lyrics acquired from [lrcget](https://github.com/tranxuanthang/lrcget),[lrcput](https://github.com/JustOptimize/lrcput)**
+**this script was designed to embed lyrics acquired from [lrcget](https://github.com/tranxuanthang/lrcget) , [lrcput](https://github.com/JustOptimize/lrcput)**
 
 ## Requirements
 - Python 3.x
@@ -43,4 +43,4 @@ Lokasi: folder yang sama dengan EmbedLRC.py
 - Script akan overwrite lyrics yang ada sebelumnya.  
 - Untuk format yang tidak didukung (misal .mp3 tanpa tag lirik), script akan skip dengan log FAIL.  
 - Disarankan backup .lrc sebelum menghapus.
-
+- Kalau mau download file .lrc kalian bisa akses aplikasi android di [Lyrically](https://t.me/lyricallyupdates) , [SongSync](https://github.com/Lambada10/SongSync) , [L Y R I C I F Y](https://t.me/LyricifyApp)
