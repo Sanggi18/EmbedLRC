@@ -1,5 +1,5 @@
 ## EmbedLRC
-Script EmbedLRC ini digunakan untuk embed lirik (.lrc) ke berbagai format audio seperti .mp3, .m4a, .flac, .aac, .alac, .ogg, dan .wav. Script ini mendukung subfolder, log otomatis, dan opsi hapus .lrc setelah embed selesai.
+Script EmbedLRC ini digunakan untuk embed lirik (.lrc) ke berbagai format audio seperti .mp3, .m4a, .flac, .aac, .alac Script ini mendukung subfolder, log otomatis, dan opsi hapus .lrc setelah embed selesai.
 
 **this script was designed to embed lyrics acquired from [lrcget](https://github.com/tranxuanthang/lrcget) , [lrcput](https://github.com/JustOptimize/lrcput)**
 
@@ -7,7 +7,6 @@ Script EmbedLRC ini digunakan untuk embed lirik (.lrc) ke berbagai format audio 
 - Python 3.x
 - Required Python libraries (install using `pip install`):
   - mutagen
-  - eyed3
   - tqdm (for progress bar)
 
 ## Usage
