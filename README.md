@@ -14,6 +14,7 @@ Script EmbedLRC ini digunakan untuk embed lirik (.lrc) ke berbagai format audio 
 2. Pastikan folder audio dan .lrc berada di dalam folder yang sama atau subfolder.  
 3. Letakkan script EmbedLRC.py di folder utama audio.  
 4. Jalankan script dengan Python :
+(in termux: $cd Storage > $cd Music)
 ```sh
 python EmbedLRC.py
 ```
