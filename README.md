@@ -14,7 +14,7 @@ This script is used to embed lyrics (`.lrc`) into various audio formats such as 
 2. Ensure that your audio files and `.lrc` files are located within the same folder or its subfolders.  
 3. Place the `EmbedLRC.py` script into the main audio folder.  
 4. Run the script using Python:
-5. 
+ 
 `(In Termux: $ cd Storage > $ cd Music)`
 
 ```sh
