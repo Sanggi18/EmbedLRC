@@ -1,29 +1,30 @@
 ## EmbedLRC
-Script EmbedLRC ini digunakan untuk embed lirik (.lrc) ke berbagai format audio seperti .mp3, .m4a, .flac, .aac, .alac Script ini mendukung subfolder, log otomatis, dan opsi hapus .lrc setelah embed selesai.
+This script is used to embed lyrics (`.lrc`) into various audio formats such as `.mp3`, `.m4a`, `.flac`, `.aac`, and `.alac`. It supports subfolder scanning, automatic logging, and an option to delete `.lrc` files after the embedding process is complete.
 
-**this script was designed to embed lyrics acquired from [lrcget](https://github.com/tranxuanthang/lrcget) , [lrcput](https://github.com/JustOptimize/lrcput)**
+**This script was designed to embed lyrics acquired from [lrcget](https://github.com/tranxuanthang/lrcget) and [lrcput](https://github.com/JustOptimize/lrcput).**
 
 ## Requirements
 - Python 3.x
 - Required Python libraries (install using `pip install`):
-  - mutagen
-  - tqdm (for progress bar)
+  - `mutagen`
+  - `tqdm` (for progress bar)
 
 ## Usage
-1. Clone atau download repository ini.  
-2. Pastikan folder audio dan .lrc berada di dalam folder yang sama atau subfolder.  
-3. Letakkan script EmbedLRC.py di folder utama audio.  
-4. Jalankan script dengan Python :
-(in termux: $cd Storage > $cd Music)
+1. Clone or download this repository.  
+2. Ensure that your audio files and `.lrc` files are located within the same folder or its subfolders.  
+3. Place the `EmbedLRC.py` script into the main audio folder.  
+4. Run the script using Python:
+`(In Termux: $ cd Storage > $ cd Music)`
+
 ```sh
 python EmbedLRC.py
 ```
-5. Script akan mulai menghitung, menampilkan progress per file.  
-6. Setelah selesai, jika ada file gagal (tidak memiliki .lrc), akan dibuat log di LOG_EmbedLRC.txt.  
-7. Script akan menanyakan apakah ingin menghapus semua .lrc atau tidak
+5. ​The script will start counting the files and display a real-time progress bar.
+6. ​After completion, if there are any failed files (e.g., missing .lrc files), a log will be generated in `LOG_EmbedLRC.txt`
+7. ​The script will then ask whether you want to delete all .lrc files or keep them.
 
 ## Example Folder
-Misalkan Anda memiliki struktur direktori sebagai berikut:
+Suppose you have the following directory structure:
 ```
 Music/
 ├─ ENGLISH/
@@ -32,15 +33,16 @@ Music/
 ├─ INDONESIA/
 │  ├─ song2.mp3
 │  ├─ song2.lrc
-├─ EmbedLRC.py (Pastikan dalam 1 Folder)
+├─ EmbedLRC.py (Ensure it is placed in the main folder)
 ```
-
 ## Log Files
-**Semua file yang tidak memiliki .lrc atau gagal di-embed akan dicatat di LOG_EmbedLRC.txt**
-Lokasi: folder yang sama dengan EmbedLRC.py
+**​All files that do not have a corresponding .lrc file or fail to embed will be recorded in LOG_EmbedLRC.txt**
 
-## Catatan
-- Script akan overwrite lyrics yang ada sebelumnya.  
-- Untuk format yang tidak didukung (misal .mp3 tanpa tag lirik), script akan skip dengan log FAIL.  
-- Disarankan backup .lrc sebelum menghapus.
-- Kalau mau download file .lrc kalian bisa akses aplikasi android di [Lyrically](https://t.me/lyricallyupdates) , [SongSync](https://github.com/Lambada10/SongSync) , [L Y R I C I F Y](https://t.me/LyricifyApp)
+Location: Same directory as EmbedLRC.py
+
+## Notes
+- The script will automatically overwrite any existing embedded lyrics.
+- ​For unsupported formats (e.g., .mp3 files with corrupt or non-standard tags), the script will skip the file and log it as FAIL.
+- ​It is highly recommended to back up your .lrc files before choosing to delete them.
+​- If you need to download .lrc files, you can find them using these Android applications: [Lyrically](https://t.me/lyricallyupdates) , [SongSync](https://github.com/Lambada10/SongSync) , [L Y R I C I F Y](https://t.me/LyricifyApp)
+
