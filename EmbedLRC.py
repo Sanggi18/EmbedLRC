@@ -5,13 +5,13 @@ from mutagen.flac import FLAC
 from mutagen.mp4 import MP4
 from mutagen.id3 import ID3, USLT, ID3NoHeaderError
 
-# Folder default = folder tempat skrip berada
+# Default directory = the folder where the script is located
 MUSIC_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Ekstensi audio yang didukung (Format yang umum dipakai)
+# Supported audio extensions (Commonly used formats)
 AUDIO_EXTENSIONS = ['.mp3', '.m4a', '.flac', '.aac', '.alac']
 
-# File log
+# Log file
 LOG_FILE = os.path.join(MUSIC_DIR, "LOG_EmbedLRC.txt")
 
 def embed_lyrics(directory):
@@ -21,8 +21,8 @@ def embed_lyrics(directory):
     skip_count = 0
     error_count = 0
 
-    # Dictionary untuk menyimpan log per folder
-    # Format: { '/path/to/folder': { 'folder_name': 'nama_folder', 'logs': [] } }
+    # Dictionary to store logs per folder
+    # Format: { '/path/to/folder': { 'folder_name': 'folder_name', 'logs': [] } }
     log_records = {}
 
     time.sleep(1)
@@ -33,10 +33,10 @@ def embed_lyrics(directory):
     print("=" * 50)
     time.sleep(1)
     
-    print("Mencari file audio di direktori...")
+    print("Searching for audio files in the directory...")
     time.sleep(1)
 
-    # Cari semua audio file
+    # Find all audio files
     for root, dirs, files in os.walk(directory):
         for file in files:
             if any(file.lower().endswith(ext) for ext in AUDIO_EXTENSIONS):
@@ -44,12 +44,12 @@ def embed_lyrics(directory):
 
     total_files = len(audio_files)
     if total_files == 0:
-        print("[!] Tidak ada file audio ditemukan.")
+        print("[!] No audio files found.")
         return
 
-    print(f"[INFO] Total file audio ditemukan: {total_files}")
+    print(f"[INFO] Total audio files found: {total_files}")
     time.sleep(1)
-    print("[INFO] Memulai proses embedding...\n")
+    print("[INFO] Starting the embedding process...\n")
     time.sleep(3)
 
     print("PROCESSING")
@@ -62,14 +62,14 @@ def embed_lyrics(directory):
         lrc_file_name = os.path.splitext(file_name)[0] + '.lrc'
         lrc_path = os.path.join(dir_path, lrc_file_name)
 
-        # Inisialisasi dictionary jika folder belum ada
+        # Initialize dictionary if the folder doesn't exist
         if dir_path not in log_records:
             log_records[dir_path] = {'folder_name': folder_name, 'logs': []}
 
         if not os.path.exists(lrc_path):
-            # Hapus keterangan [LRC Tidak Ditemukan] di terminal
-            print(f" 🟡 SKIP   | {file_name}")
-            # Tapi tetap catat alasannya di log
+            # Remove [LRC Not Found] message in the terminal to keep it clean
+            print(f" 🟡 SKIP    | {file_name}")
+            # But still record the reason in the log
             log_records[dir_path]['logs'].append(f"[SKIP] {file_name} [Missing .lrc]")
             skip_count += 1
             time.sleep(0.01)
@@ -98,17 +98,17 @@ def embed_lyrics(directory):
                 audio.tags['\xa9lyr'] = lyrics_text
                 audio.save()
 
-            print(f" 🟢 SUKSES | {file_name}")
-            log_records[dir_path]['logs'].append(f"[SUCCES] {file_name}")
+            print(f" 🟢 SUCCESS | {file_name}")
+            log_records[dir_path]['logs'].append(f"[SUCCESS] {file_name}")
             embedded_count += 1
             successful_lrcs.append(lrc_path)
             time.sleep(0.01)
 
         except Exception as e:
             error_msg = str(e) if str(e) else "Metadata Error / Invalid"
-            # Hapus keterangan error di terminal agar rapi
-            print(f" 🔴 ERROR  | {file_name}")
-            # Tapi tetap catat error spesifiknya di log
+            # Hide specific error messages in the terminal to keep it clean
+            print(f" 🔴 ERROR   | {file_name}")
+            # But still record the specific error in the log
             log_records[dir_path]['logs'].append(f"[ERROR] {file_name} [{error_msg}]")
             error_count += 1
             time.sleep(0.01)
@@ -119,7 +119,7 @@ def embed_lyrics(directory):
                 except OSError:
                     pass
 
-    # Penulisan File Log Detail per Folder
+    # Write Detailed Log File per Folder
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         f.write("LOG EmbedLRC\n\n")
         for d_path, data in log_records.items():
@@ -130,33 +130,33 @@ def embed_lyrics(directory):
                 f.write(f"{log_line}\n")
             f.write("\n")
 
-    # UI Footer / Ringkasan
+    # UI Footer / Summary
     time.sleep(1)
     print("\n" + "=" * 50)
     time.sleep(1)
-    print("                 RINGKASAN HASIL                  ")
+    print("                  RESULT SUMMARY                  ")
     time.sleep(1)
     print("=" * 50)
     time.sleep(1)
     
     print("")
     time.sleep(1)
-    print(f"Total diproses : {total_files}")
+    print(f"Total processed       : {total_files}")
     time.sleep(1)
-    print(f"Berhasil embed : {embedded_count}")
+    print(f"Successfully embedded : {embedded_count}")
     time.sleep(1)
-    print(f"Gagal/Skip     : {skip_count + error_count}")
+    print(f"Failed / Skipped      : {skip_count + error_count}")
     time.sleep(3)
 
-    print(f"\n[INFO] List lagu beserta status dicatat di: {LOG_FILE}")
+    print(f"\n[INFO] The song list and status are logged in: {LOG_FILE}")
     time.sleep(0.5)
 
-    # Prompt Hapus LRC
+    # LRC Deletion Prompt
     if embedded_count > 0:
-        print("\nLyric sudah berhasil di-embed ke Lagu.")
+        print("\nLyrics have been successfully embedded into the audio files.")
         time.sleep(0.5)
         
-        delete_lrc = input("Hapus File .lrc yang SUKSES di-embed?\ny (yes) n (no): ").strip().lower()
+        delete_lrc = input("Delete the SUCCESSFULLY embedded .lrc files?\ny (yes) or n (no): ").strip().lower()
         time.sleep(0.5)
         
         if delete_lrc == 'y':
@@ -165,10 +165,10 @@ def embed_lyrics(directory):
                     os.remove(lrc)
                 except OSError:
                     pass
-            print("\n[✓] File .lrc yang berhasil di-embed telah dihapus.")
+            print("\n[✓] Successfully embedded .lrc files have been deleted.")
             time.sleep(2)
         else:
-            print("\n[-] File .lrc tetap disimpan.")
+            print("\n[-] The .lrc files were kept.")
             time.sleep(2)
 
 if __name__ == "__main__":
